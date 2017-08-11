@@ -35,6 +35,12 @@ outputTag配置在`jdf output`阶段使用哪个tag
 }
 ```
 
+## 支持环境切换的文件
+* html, htm, xhtml
+* vm, smarty, tpl, jade,
+* js, babel, es6
+* json, yml
+
 ## 真实示例
 * 切换html、vm、smarty文件里的url路径
 ``` html

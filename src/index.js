@@ -7,11 +7,23 @@ export const Plugin = function () {
             Object.assign(config, option || {})
             
             if (config.pluginConfig) {
-                config.prefix = config.pluginConfig.prefix || config.prefix
+                // 合并buildTags
+                config.buildTag = config.pluginConfig.buildTag || config.buildTag
+                // 合并outputTags
+                config.outputTag = config.pluginConfig.outputTag || config.outputTag
+                // 合并tags
+                if (config.pluginConfig.tags && config.pluginConfig.tags.length > 1) {
+                    config.tags = config.tags.concat(config.pluginConfig.tags)
+                    config.tags = config.tags.filter((item, idx, tags) => {
+                        var firstIdx = tags.indexOf(item)
+                        return firstIdx === idx
+                    })
+                }
             }
         },
 
         beforeBuild: function () {
+            return Func.beforeBuild()
         },
 
         afterBuild: function () {
